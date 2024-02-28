@@ -4,13 +4,7 @@ def solution(num_list):
     
     for i in num_list:
         mul*=i
-    
-    for i in num_list:
         square_sum+=i
-    
-    square_sum=square_sum*square_sum
         
-    if mul<square_sum:
-        return 1    
-    else:
-        return 0
+    if mul<square_sum*square_sum: return 1    
+    else:  return 0
