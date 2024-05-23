@@ -6,7 +6,9 @@ def solution(progresses,speeds):
     for i in range(len(progresses)):
         time=(100-progresses[i])/speeds[i]
         if time%1!=0:
+            print("time : ", time)
             time=time//1+1
+            
 
         devTime.append(int(time))
 
