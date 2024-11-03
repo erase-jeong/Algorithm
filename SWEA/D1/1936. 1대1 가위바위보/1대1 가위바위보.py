@@ -1,9 +1,5 @@
 A,B=map(int,input().split())
-if(B==(A-1)):
-    print('A')
-elif(B==(A-2)):
-    print('B')
-elif(A==(B-1)):
-    print('B')
-elif(A==(B-2)):
-    print('A')
+if(A==1 and B==3) or (A==2 and B==1) or (A==3 and B==2):
+    print("A")
+else:
+    print("B")
