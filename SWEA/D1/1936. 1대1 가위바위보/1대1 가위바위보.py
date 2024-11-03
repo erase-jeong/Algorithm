@@ -1,0 +1,9 @@
+A,B=map(int,input().split())
+if(B==(A-1)):
+    print('A')
+elif(B==(A-2)):
+    print('B')
+elif(A==(B-1)):
+    print('B')
+elif(A==(B-2)):
+    print('A')
