@@ -1,15 +1,18 @@
 T=int(input())
 for tc in range(1,T+1):
     N=int(input())
-
-    ps=[[] for _ in range(N)]
-
-    print(f'#{tc}')
+    
+    arr=[]
+    #가변배열(행마다 열의 개수 다른 형태의 배열)
+    for i in range(N):
+        arr.append([0]*(i+1))
+    
+    print('#{}'.format(tc))
     for i in range(N):
         for j in range(i+1):
-            if(j==0 or j==i):
-                ps[i].append(1)
+            if j==0 or j==i:
+                arr[i][j]=1
             else:
-                ps[i].append(ps[i-1][j-1]+ps[i-1][j])
-
-        print(" ".join(map(str,ps[i])))
+                arr[i][j]=arr[i-1][j-1]+arr[i-1][j]   
+            print(arr[i][j],end=" ")
+        print(" ")
