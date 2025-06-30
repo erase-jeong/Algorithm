@@ -1,7 +1,10 @@
-def main():
-    s = input().strip()
-    # 각 자리 문자를 내림차순으로 정렬한 뒤 합쳐서 출력
-    print(''.join(sorted(s, reverse=True)))
+n=int(input())
 
-if __name__ == "__main__":
-    main()
+li=[]
+for i in str(n):
+    li.append(int(i))
+ 
+li.sort(reverse=True) #내림차순 정렬
+
+for i in li:
+    print(i,end='')
