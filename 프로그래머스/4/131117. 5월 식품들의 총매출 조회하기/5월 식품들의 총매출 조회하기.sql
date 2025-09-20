@@ -1,0 +1,37 @@
+-- 코드를 입력하세요
+/*
+SELECT
+*
+FROM FOOD_PRODUCT AS P
+JOIN FOOD_ORDER AS O
+ON P.PRODUCT_ID=O.PRODUCT_ID
+*/
+-- WHERE PRODUCE_DATE LIKE '2022-05%'
+-- WHERE DATE_FORMAT(PRODUCE_DATE, '%Y-%m')='2022-05'
+-- WHERE LEFT(PRODUCE_DATE,7)='2022-05'
+
+-- --------------------------------
+-- ** 시작
+-- SELECT * FROM FOOD_PRODUCT
+-- SELECT * FROM FOOD_ORDER
+
+-- 문제 : 생산일자가 5월인 식품들의 식품 ID, 식품 이름, 총매출을 조회하는 SQL문 작성
+-- 총 매출을 기준으로 내림차순 정렬, 총매출이 같다면 식품 ID를 기준으로 오름차순
+
+SELECT 
+    P.PRODUCT_ID
+    , P.PRODUCT_NAME
+    -- , P.PRICE
+    ,SUM(P.PRICE*O.AMOUNT) AS TOTAL_SALES
+    -- ,SUM(O.AMOUNT) -- SUM해주어야지 제대로 출력된다
+    
+FROM FOOD_PRODUCT AS P
+JOIN FOOD_ORDER AS O
+ON P.PRODUCT_ID=O.PRODUCT_ID
+
+-- WHERE PRODUCE_DATE LIKE '2022-05%' -- (방법 1)
+-- WHERE DATE_FORMAT(PRODUCE_DATE,'%Y-%m')='2022-05'  --방법2
+WHERE LEFT(PRODUCE_DATE, 7)='2022-05'
+GROUP BY P.PRODUCT_ID  -- 잠시 삭제 VER
+
+ORDER BY TOTAL_SALES DESC, P.PRODUCT_ID ASC
