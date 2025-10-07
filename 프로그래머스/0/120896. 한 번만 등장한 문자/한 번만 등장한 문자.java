@@ -1,30 +1,30 @@
 import java.util.*;
-
-class Solution {
-    public String solution(String s) {
-        String answer = "";
-        char[] arr=s.toCharArray();
-        HashMap<Character,Integer> map=new HashMap<>();
-        PriorityQueue<Character> pq = new PriorityQueue<>();
+class Solution{
+    public String solution(String s){
+        String answer="";
+        String[] arr=s.split("");
+        int cnt=0;
         
+        Arrays.sort(arr);
+        System.out.println(Arrays.toString(arr));
         for(int i=0;i<arr.length;i++){
-            map.computeIfAbsent(arr[i],k->0);
-            map.put(arr[i],map.get(arr[i])+1);
-        }
-        
-        for(Character c:map.keySet()){
-            if(map.get(c)==1){
-                pq.add(c);
+            System.out.println("i : "+i);
+            cnt=0;
+            for(int j=0;j<arr.length;j++){
+                //System.out.println("arr[i] : "+arr[i]+", arr[j] : "+arr[j]);
+                //System.out.println("cnt : "+cnt);
+                if(arr[i].equals(arr[j])){
+                    cnt++;                   
+                }
+            }
+            if(cnt==1){
+            answer+=arr[i];
             }
         }
+           
+        //System.out.println(Arrays.toString(arr));
+        //System.out.println(Arrays.toString(arr));
         
-        while(!pq.isEmpty()){
-            answer+=pq.poll();
-        }
         return answer;
     }
 }
-
-//System.out.println(arr);
-//System.out.println(map);
-//System.out.println(pq);
