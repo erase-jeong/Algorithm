@@ -1,14 +1,12 @@
 class Solution {
     public int solution(String number) {
-        char[] arr=number.toCharArray();
+        int answer=0;
         
-        int sum=0;
-        
-        for(int i=0;i<arr.length;i++){
-            sum+=arr[i]-'0';
+        for(int i=0;i<number.length();i++){
+            answer+=number.charAt(i)-'0';
         }
         
-        int answer=sum%9;
+        answer%=9;
         
         return answer;
     }
