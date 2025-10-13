@@ -1,13 +1,11 @@
 class Solution {
     public String[] solution(String[] todo_list, boolean[] finished) {
-        
         int n=0;
-        
         for(boolean b : finished){
             if(b==false) n++;
         }
         
-        String[] answer = new String[n];
+        String[] answer=new String[n];
         
         int j=0;
         for(int i=0;i<todo_list.length;i++){
@@ -16,6 +14,7 @@ class Solution {
                 j++;
             }
         }
+        
         return answer;
     }
 }
