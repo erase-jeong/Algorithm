@@ -4,12 +4,9 @@ class Solution {
     public int solution(int[] numbers) {
         Arrays.sort(numbers);
         
-        if(numbers[0]*numbers[1]>numbers[numbers.length-1]*numbers[numbers.length-2]){
-            return numbers[0]*numbers[1];
-        }
-        else{
-            return numbers[numbers.length-1]*numbers[numbers.length-2];
-        }
+        int edge1=numbers[0]*numbers[1];
+        int edge2=numbers[numbers.length-1]*numbers[numbers.length-2];
+        return Math.max(edge1,edge2);
     
     }
 }
