@@ -1,9 +1,15 @@
+
+/*
+1. 식품분류(CATEGORY)별, 가장 가격이 제일 비싼 식품의 ~ => (카테고리, MAX_PRICE) 
+2. 식품의 분류, 가격, 이름 조회
+*/
+
 SELECT CATEGORY, PRICE AS MAX_PRICE, PRODUCT_NAME
 FROM FOOD_PRODUCT
 WHERE (CATEGORY, PRICE) IN (
-							SELECT CATEGORY, MAX(PRICE)
-							FROM FOOD_PRODUCT
-                            GROUP BY CATEGORY
-                            HAVING CATEGORY IN ('국','김치','식용유','과자')
-                            )
+    SELECT CATEGORY, MAX(PRICE)
+    FROM FOOD_PRODUCT
+    GROUP BY CATEGORY
+    HAVING CATEGORY IN ('국','김치','식용유','과자')
+)
 ORDER BY MAX_PRICE DESC;
