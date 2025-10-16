@@ -1,8 +1,5 @@
 import java.util.*;
 
-
-import java.util.*;
-
 class Solution {
     public int solution(String[][] clothes) {
         int answer=1;
