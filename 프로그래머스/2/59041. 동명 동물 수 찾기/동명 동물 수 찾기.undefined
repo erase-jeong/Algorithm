@@ -1,6 +1,9 @@
-select name, count(name) as count
-from animal_ins
-where name is not null
-group by name
-having count(name)>=2
-ORDER BY NAME ASC;
+SELECT NAME, COUNT(*) AS COUNT
+FROM ANIMAL_INS
+GROUP BY NAME
+HAVING COUNT(NAME)>=2 AND NAME IS NOT NULL
+ORDER BY NAME
+-- WHERE NAME IS NO NULL ==> 이거 왜 에러나는지?
+
+
+-- 왜 HAVING 인가? (WHERE vs HAVING)
