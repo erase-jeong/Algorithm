@@ -46,14 +46,6 @@ public class Main {
 
         //n개의 노드를 방문해야 정상
         for(int i=1;i<=N;i++){
-            /*
-            //큐가 비었다 = 처리할 노드가 없음 = 사이클 존재
-            if(pq.isEmpty()){
-                System.out.println("사이클이 발생했습니다.");
-                return;
-            }
-            */
-
             int x=pq.poll();
             result[i]=x;
 
