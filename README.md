@@ -7,4 +7,5 @@ This is a auto push repository for Baekjoon Online Judge created with [BaekjoonH
 |  |
 | ------- |
 | [0176-second-highest-salary](https://github.com/erase-jeong/Algorithm/tree/master/0176-second-highest-salary) |
+| [0577-employee-bonus](https://github.com/erase-jeong/Algorithm/tree/master/0577-employee-bonus) |
 <!---LeetCode Topics End-->
