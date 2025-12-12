@@ -2,26 +2,33 @@ import java.util.*;
 
 class Solution {
     public int solution(String[][] clothes) {
-        int answer=1;
+        HashMap<String, Integer> map=new HashMap<>();
         
-        //HashMap 선언
-        HashMap<String,List<String>> map=new HashMap<>();
-        
-        //값 넣기
+        //종류별 개수 세기
         for(int i=0;i<clothes.length;i++){
-            String name=clothes[i][0];
-            String type=clothes[i][1];
-            map.computeIfAbsent(type,k->new ArrayList<>()).add(name);
-        }
-    
-        
-        //결과 만들기
-        
-        for(String s : map.keySet()){
-            answer*=map.get(s).size()+1;
+            String category=clothes[i][1];
+            
+            if(map.containsKey(category)){
+                map.put(category,map.get(category)+1);
+            }else{
+                map.put(category,1);
+            }
         }
         
+        //조합 계산
+        int answer=1;
+        for(int count:map.values()){
+            answer*=(count+1); //입지 않는 경우 포함
+        }
         
+        //아무것도 안입은 경우 제외
         return answer-1;
     }
 }
+
+
+/*
+if clothes[i][1]에 해당하는 값이 hashmap에 있는지 확인하기
+    => 없으면? key 추가하기
+    => 있으면? value넣기
+*/
