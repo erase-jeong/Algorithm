@@ -4,14 +4,13 @@ class Solution{
     static List<String> list;
     static String[] words={"A","E","I","O","U"};
     
-    public static int solution(String find){
-        int answer=0;
+    public static int solution(String word){
         list=new ArrayList<>();
+        int answer=0;
         dfs("",0);
-        int size=list.size();
         
-        for(int i=0;i<size;i++){
-            if(list.get(i).equals(find)){
+        for(int i=0;i<list.size();i++){
+            if(list.get(i).equals(word)){
                 answer=i;
                 break;
             }
