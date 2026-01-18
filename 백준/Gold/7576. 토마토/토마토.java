@@ -1,85 +1,92 @@
-import java.util.*;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.StringTokenizer;
 
 public class Main {
+    public static int N;
+    public static int M;
+    public static int[][] box;
 
-    static int[] dr={-1,1,0,0};
-    static int[] dc={0,0,-1,1};
+    public static int[] dx = {1, -1, 0, 0};
+    public static int[] dy = {0, 0, 1, -1};
 
-    public static void main(String args[]) throws IOException{
-        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st=new StringTokenizer(br.readLine());
+    public static Queue<tomato> queue = new LinkedList<tomato>();
 
-        int M=Integer.parseInt(st.nextToken()); //열
-        int N=Integer.parseInt(st.nextToken()); //행
+    static class tomato{
+        int x;
+        int y;
+        int day;
 
-        int[][] box=new int[N][M];
+        public tomato(int x, int y, int day){
+            this.x = x;
+            this.y = y;
+            this.day = day;
+        }
+    }
 
-        Queue<int[]> q=new LinkedList<>();
+    public static void main(String[] args) throws IOException {
 
-        boolean hasZero=false; //안 익은 토마토가 하나라도 있었는지
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
 
-        //입력
-        for(int i=0;i<N;i++){
-            st=new StringTokenizer(br.readLine());
-            for(int j=0;j<M;j++){
-                box[i][j]=Integer.parseInt(st.nextToken());
-                if(box[i][j]==1){
-                    //처음부터 익어있는 토마토 : day=0
-                    q.offer(new int[]{i,j,0});
-                }else if(box[i][j]==0){
-                    hasZero=true;
+        M = Integer.parseInt(st.nextToken());
+        N = Integer.parseInt(st.nextToken());
+
+        box = new int[N][M];
+        for (int i = 0; i < N; i++) {
+            st = new StringTokenizer(br.readLine(), " ");
+            for (int j = 0; j < M; j++) {
+                box[i][j] = Integer.parseInt(st.nextToken());
+                if(box[i][j] == 1){
+                    queue.offer(new tomato(i,j,0));
+                }
+
+            }
+        }
+
+        bfs();
+    }
+
+    public static void bfs() {
+        int day = 0;
+
+        while(!queue.isEmpty()) {
+            tomato t = queue.poll();
+            day = t.day;
+
+            for(int i=0; i<4; i++) {
+                int nx = t.x + dx[i];
+                int ny = t.y + dy[i];
+
+                if(0 <= nx && nx <N && 0<= ny && ny <M) {
+                    if(box[nx][ny] == 0) {
+                        box[nx][ny] = 1;
+                        queue.add(new tomato(nx, ny, day+1));
+                    }
                 }
             }
         }
 
-        //처음부터 모든 토마토가 익어 있으면 0일
-        if(!hasZero){
-            System.out.println(0);
-            return;
+        if(checkTomato()){
+            System.out.println(day);
+        } else{
+            System.out.println(-1);
         }
-
-        int answer=0;
-
-        //BFS
-        while(!q.isEmpty()){
-            int[] cur=q.poll();
-            int r=cur[0];
-            int c=cur[1];
-            int day=cur[2];
-
-            //현재까지의 최대 날짜 갱신
-            if(day>answer) answer=day;
-
-            for(int i=0;i<4;i++){
-                int nr=r+dr[i];
-                int nc=c+dc[i];
-                int nday=day+1;
-
-                
-                //범위 체크
-                if(nr<0 || nr>=N || nc<0 || nc>=M) continue;
-
-                //안 익은 토마토(0)인 경우만 방문
-                if(box[nr][nc]==0){
-                    box[nr][nc]=1;
-                    q.offer(new int[]{nr,nc,nday});
-                }
-            }
-        }
-
-        //BFS가 끝난 뒤에도 안 익은 토마토가 남아 있으면 -1
-        for(int i=0;i<N;i++){
-            for(int j=0;j<M;j++){
-                if(box[i][j]==0){
-                    System.out.println(-1);
-                    return;
-                }
-            }
-        }
-
-        //모두 익었다면 걸린 날짜 출력
-        System.out.println(answer);
 
     }
+
+    static boolean checkTomato() {
+        for(int i=0; i<N; i++) {
+            for(int j=0; j<M; j++) {
+                if(box[i][j] == 0)
+                    return false;
+                // 덜 익은 토마토가 있다면
+            }
+        }
+        return true;
+    }
+
 }
