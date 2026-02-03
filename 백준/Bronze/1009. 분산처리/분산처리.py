@@ -24,4 +24,3 @@ for i in range(t):
             print(base**4%10)
         else:
             print(base**(b%4)%10)
-
