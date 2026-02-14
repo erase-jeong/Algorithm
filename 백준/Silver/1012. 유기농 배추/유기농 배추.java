@@ -62,6 +62,7 @@ public class Main {
         Queue<int[]> q=new LinkedList<>();
         q.add(new int[]{r,c});
         int size=1;
+        visited[r][c]=true;
 
         while(!q.isEmpty()){
             int[] p=q.poll();
