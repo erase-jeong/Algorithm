@@ -1,15 +1,11 @@
--- 최종 출력
-
--- 요거트를 가지고 있는 CART_ID
-SELECT Y.CART_ID
-FROM
-    (SELECT CART_ID
+-- 같은 CART_ID끼리 묶어서 NAME들을 하나의 문자열로 이어붙인다.
+-- GROUP_CONCAT 이 하는 일 : 여러 행의 값을 한 줄 문자열로 합쳐주는 함수
+SELECT CART_ID
+FROM (
+    SELECT CART_ID, GROUP_CONCAT(NAME) AS NAMES
     FROM CART_PRODUCTS
-    WHERE NAME='Yogurt'
-    ) AS Y
-JOIN
-    (SELECT CART_ID
-    FROM CART_PRODUCTS
-    WHERE NAME='Milk') AS M
-ON Y.CART_ID=M.CART_ID
-ORDER BY Y.CART_ID;
+    GROUP BY CART_ID
+) TMP
+WHERE NAMES LIKE '%Milk%'
+    AND NAMES LIKE '%Yogurt%'
+ORDER BY CART_ID;
