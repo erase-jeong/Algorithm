@@ -7,52 +7,38 @@ public class Main {
     public static void main(String[] args) throws IOException{
         BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
         int N=Integer.parseInt(br.readLine());
-        int[] gover=new int[N];
-
+        int[] arr=new int[N];
         StringTokenizer st=new StringTokenizer(br.readLine());
+
+        int max=Integer.MIN_VALUE;
         for(int i=0;i<N;i++){
-            gover[i]=Integer.parseInt(st.nextToken());
+            arr[i]=Integer.parseInt(st.nextToken());
+            if(arr[i]>max) max=arr[i];
         }
         int M=Integer.parseInt(br.readLine());
 
+        long left=0;  //이것땜에 틀렸나?  //N->0으로 고침
+        long right=max;
+        long answer=0;
 
-
-
-        //(1) 합을 더한다.
-        int sum=0;
-        for(int i=0;i<N;i++){
-            sum+=gover[i];
-        }
-
-
-        //합보다 작은지 확인
-        if(sum<M){ //총 예산보다 적으면
-            //남은 값들 중에서 최댓값을 출력한다.
-            int max_v=Integer.MIN_VALUE;
-            for(int i=0;i<N;i++){
-                if(gover[i]>max_v) max_v=gover[i];
+        while(left<=right){
+            long mid=(left+right)/2;
+            long sum=0; //int -> long으로 수정
+            for(int a: arr){
+                //상한선 아래 부분에 대해서 더한다.
+                //=>결국 상한선 아래부분에 대해서 구한다.
+                if(mid>=a) sum+=a;
+                else sum+=mid;
             }
-            System.out.println(max_v);
-        }
-        else{
-            int answer=M/N;
-            while(true){
-                int now_sum=0; //계속 int로 선언되도 괜찮은건가?
-                for(int i=0;i<N;i++){
-                    if(gover[i]<answer) now_sum+=gover[i];
-                    else now_sum+=answer;
-                }
-                if(M>now_sum) answer++;
-                else if(M==now_sum) {
-                    System.out.println(answer);
-                    break;
-                }
-                else{
-                    System.out.println(--answer);
-                    break;
-                }
+
+            //이분탐색
+            if(sum>M){ //mid(예산)을 작게 만들어줘야함
+                right=mid-1;
+            }else{  //우리가 구하는 거
+                answer=mid;
+                left=mid+1;
             }
         }
-
+        System.out.println(answer);
     }
 }
