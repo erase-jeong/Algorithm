@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class Main {
+public class Main{
     static int[] result;
     static int N,M;
     static StringBuilder sb=new StringBuilder();
@@ -16,11 +16,11 @@ public class Main {
 
         result=new int[M];
 
-        dfs(1,0);
+        dfs(0);
         System.out.println(sb);
     }
 
-    public static void dfs(int start, int depth){
+    public static void dfs(int depth){
         if(depth==M){  // 종료조건
             for(int val : result){
                 sb.append(val).append(" ");
@@ -31,7 +31,7 @@ public class Main {
 
         for(int i=1;i<=N;i++){
             result[depth]=i;
-            dfs(i+1,depth+1);
+            dfs(depth+1);
         }
     }
 }
