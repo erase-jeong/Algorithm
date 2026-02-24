@@ -6,16 +6,20 @@ import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
-        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
-        int N=Integer.parseInt(br.readLine());
-        StringBuilder out=new StringBuilder();
-        int[][] map=new int[N][N];
-        boolean[][] visited=new boolean[N][N];
+    static int N;
+    static int[][] map;
+    static boolean[][] visited;
 
-        //아래, 오른쪽
-        int[] dx={1,0}; //행
-        int[] dy={0,1}; //열
+    //아래, 오른쪽
+    static int[] dx={1,0}; //행
+    static int[] dy={0,1}; //열
+
+    public static void main(String[] args) throws IOException{
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+        N=Integer.parseInt(br.readLine());
+
+        map=new int[N][N];
+        visited=new boolean[N][N];
 
         for(int i=0;i<N;i++){
             StringTokenizer st=new StringTokenizer(br.readLine());
@@ -23,9 +27,11 @@ public class Main {
                 map[i][j]=Integer.parseInt(st.nextToken());
             }
         }
+        System.out.println(bfs());
 
-        boolean find=false;
+    }
 
+    static String bfs(){
         Queue<int[]> q=new LinkedList<>();
         q.offer(new int[]{0,0});
         visited[0][0]=true;
@@ -36,9 +42,7 @@ public class Main {
             int y=p[1];
 
             if(map[x][y]==-1){
-                out.append("HaruHaru");
-                find=true;
-                break;
+                return "HaruHaru";
             }
 
             for(int d=0;d<2;d++){
@@ -51,11 +55,6 @@ public class Main {
                 q.offer(new int[]{nx,ny});
             }
         }
-
-        if(!find){
-            out.append("Hing");
-        }
-
-        System.out.println(out);
+        return "Hing";
     }
 }
