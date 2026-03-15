@@ -16,10 +16,6 @@ public class Main {
         N=Integer.parseInt(st.nextToken());
         M=Integer.parseInt(st.nextToken());
 
-        arr=new int[N+1];
-        for(int i=1;i<N+1;i++){
-            arr[i]=i;
-        }
 
         visited=new boolean[N+1];
         result=new int[M];
@@ -29,7 +25,7 @@ public class Main {
     }
 
     public static void func(int depth){
-        if(depth==M){  //이거 depth==M-1말고 depth==M이여도 되는거지?
+        if(depth==M){  
             for(int i=0;i<M;i++){
                 System.out.print(result[i]+" ");
             }
@@ -38,10 +34,9 @@ public class Main {
         }
 
         for(int i=1;i<N+1;i++){
-            //System.out.println("for문 : "+i);
             if(!visited[i]){
                 visited[i]=true;
-                result[depth]=arr[i];
+                result[depth]=i;
                 func(depth+1);
                 visited[i]=false;
             }
