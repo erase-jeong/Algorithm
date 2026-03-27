@@ -1,5 +1,3 @@
-
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -9,44 +7,38 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st=new StringTokenizer(br.readLine());
+        String[] s=(st.nextToken()).split(":");
+        String[] e=(st.nextToken()).split(":");
+        String[] q=(st.nextToken()).split(":");
 
-        //시간 환산해서 넣기
-        String[] s=st.nextToken().split(":");
-        String[] e=st.nextToken().split(":");
-        String[] q=st.nextToken().split(":");
+        int sti=60*Integer.parseInt(s[0])+Integer.parseInt(s[1]);
+        int eti=60*Integer.parseInt(e[0])+Integer.parseInt(e[1]);
+        int qti=60*Integer.parseInt(q[0])+Integer.parseInt(q[1]);
 
-        int start=Integer.parseInt(s[0])*60+Integer.parseInt(s[1]);
-        int end=Integer.parseInt(e[0])*60+Integer.parseInt(e[1]);
-        int quick=Integer.parseInt(q[0])*60+Integer.parseInt(q[1]);
+        /// 최대 10만 줄 이하
+        Set<String> enter=new HashSet<>();
+        Set<String> ans=new HashSet<>();
 
-        Set<String> startSet=new HashSet<String>();
-        Set<String> endSet=new HashSet<String>();
+        String line;
+        while((line=br.readLine())!=null){
+            //if(line.trim().isEmpty()) continue;
+            String[] input=line.split(" ");
 
-        while(true){
-            String line=br.readLine();
-            if(line==null || line.trim().isEmpty()) break; //이게 맞나?
+            String[] sTime=input[0].split(":");
+            String name=input[1];
 
-            String[] arr=line.split(" ");
+            int time=60*Integer.parseInt(sTime[0])+Integer.parseInt(sTime[1]);
 
-            //시간 변환하기
-            String[] timeArr=arr[0].split(":");
-            int time=Integer.parseInt(timeArr[0])*60+Integer.parseInt(timeArr[1]);
-
-            /// 입장 체크
-            if(time<=start){
-                startSet.add(arr[1]);
+            if(time<=sti){
+                enter.add(name);
             }
-
-            /// 퇴장 체크
-            if(end<=time && time<=quick){
-                endSet.add(arr[1]);
+            //중복 채팅
+            else if(eti<=time && time<=qti){
+                if(enter.contains(name)){
+                    ans.add(name);
+                }
             }
-
         }
-
-        startSet.retainAll(endSet);
-        System.out.println(startSet.size());
-
+        System.out.println(ans.size());
     }
 }
-
