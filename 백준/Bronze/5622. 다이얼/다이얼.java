@@ -1,37 +1,29 @@
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.HashMap;
 
 public class Main {
-    public static void main(String args[]){
-        //문자열로 입력받기
-        Scanner sc=new Scanner(System.in);
-        //time 변수 만들기
-        int time=0;
+    public static void main(String[] args) throws IOException {
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+        String line=br.readLine();
+        int answer=0;
 
-        //문자열 앞에서부터 순회하면서 각 변수마다 얼마나 걸리는지 확인하기
-        String word=sc.nextLine();
+        HashMap<Character,Integer> map=new HashMap<>();
+        map.put('A',3); map.put('B',3); map.put('C',3);
+        map.put('D',4); map.put('E',4); map.put('F',4);
+        map.put('G',5); map.put('H',5); map.put('I',5);
+        map.put('J',6); map.put('K',6); map.put('L',6);
+        map.put('M',7); map.put('N',7); map.put('O',7);
+        map.put('P',8); map.put('Q',8); map.put('R',8); map.put('S',8);
+        map.put('T',9); map.put('U',9); map.put('V',9);
+        map.put('W',10); map.put('X',10); map.put('Y',10); map.put('Z',10);
 
-        for(int i=0;i<word.length();i++){
-            if(word.charAt(i)=='A' || word.charAt(i)=='B' || word.charAt(i)=='C'){
-                time+=3;
-            } else if(word.charAt(i)=='D' || word.charAt(i)=='E' || word.charAt(i)=='F'){
-                time+=4;
-            }else if(word.charAt(i)=='G' || word.charAt(i)=='H' || word.charAt(i)=='I'){
-                time+=5;
-            }else if(word.charAt(i)=='J' || word.charAt(i)=='K' || word.charAt(i)=='L'){
-                time+=6;
-            }else if(word.charAt(i)=='M' || word.charAt(i)=='N' || word.charAt(i)=='O'){
-                time+=7;
-            }else if(word.charAt(i)=='P' || word.charAt(i)=='Q' || word.charAt(i)=='R'|| word.charAt(i)=='S'){
-                time+=8;
-            }else if(word.charAt(i)=='T' || word.charAt(i)=='U' || word.charAt(i)=='V'){
-                time+=9;
-            }else if(word.charAt(i)=='W' || word.charAt(i)=='X' || word.charAt(i)=='Y'|| word.charAt(i)=='Z'){
-                time+=10;
-            }
+        for(int i=0;i<line.length();i++){
+            char ch=line.charAt(i);
+            answer+=map.get(ch);
         }
-
-        System.out.println(time);
-
-
+        System.out.println(answer);
     }
 }
