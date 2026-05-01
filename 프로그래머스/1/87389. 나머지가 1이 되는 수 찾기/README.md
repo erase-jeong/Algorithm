@@ -1,10 +1,10 @@
 # [level 1] 나머지가 1이 되는 수 찾기 - 87389 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/87389) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/87389?language=java) 
 
 ### 성능 요약
 
-메모리: 10 MB, 시간: 41.74 ms
+메모리: 90.8 MB, 시간: 8.16 ms
 
 ### 구분
 
@@ -16,7 +16,7 @@
 
 ### 제출 일자
 
-2024년 03월 02일 14:22:21
+2026년 05월 01일 19:26:57
 
 ### 문제 설명
 
