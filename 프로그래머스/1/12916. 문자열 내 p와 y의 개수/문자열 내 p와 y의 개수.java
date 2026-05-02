@@ -1,17 +1,22 @@
 class Solution {
     boolean solution(String s) {
-        boolean answer = true;
-        int cntP=0;
-        int cntY=0;
-            
+        int p=0,y=0;
+        
         for(int i=0;i<s.length();i++){
-            if(s.charAt(i)=='p' || s.charAt(i)=='P') cntP+=1;
-            else if(s.charAt(i)=='y' || s.charAt(i)=='Y') cntY+=1;
+            char ch=s.charAt(i);
+            if(ch=='p' || ch=='P') p++;
+            if(ch=='y' || ch=='Y') y++;
         }
         
-        if(cntP==cntY) return true;
+        if(p==y) return true;
         else return false;
-        
-    
     }
 }
+
+/*
+대문자로 통일하기 -> 굳이?
+int p
+int y
+
+각 카운트 계산하기 -> 합계 비교
+*/
