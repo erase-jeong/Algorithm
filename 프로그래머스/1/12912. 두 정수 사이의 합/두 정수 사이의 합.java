@@ -1,20 +1,20 @@
 class Solution {
     public long solution(int a, int b) {
-        
-        //a, b 정렬하기
-        if(a>b){
-            int tmp=b;
-            b=a;
-            a=tmp;
-        }
-        
-        
         long answer=0;
         
-        for(int i=a; i<=b;i++){
+        int min=0, max=0;
+        //a,b정렬하기
+        if(a>b){
+            max=a; min=b;
+        }else{
+            max=b; min=a;
+        }
+        
+        //a~b까지의 수 더하기
+        for(int i=min;i<=max;i++){
             answer+=i;
         }
-
+        
         return answer;
     }
 }
