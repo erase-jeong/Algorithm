@@ -1,0 +1,22 @@
+import java.util.*;
+
+class Solution{
+    public int solution(int[] people, int limit){
+        Arrays.sort(people);
+        
+        int left=0;
+        int right=people.length-1;
+        int boats=0;
+        
+        while(left<=right){
+            //가장 가벼운 사람 + 가장 무거운 사람이 같이 탈 수 있으면?
+            if(people[left]+people[right]<=limit){
+                left++; //가벼운 사람도 태움
+            }
+            //무거운 사람은 항상 이번 보트에 탑승
+            right--;
+            boats++;
+        }
+        return boats;
+    }
+}
