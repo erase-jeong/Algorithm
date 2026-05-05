@@ -1,23 +1,28 @@
 import java.util.*;
-class Solution{
-    public int solution(int[][] routes){
-        int answer=0;
-        Arrays.sort(routes,new Comparator<int[]>(){
-           @Override
-            public int compare(int[] a, int[] b){
-                return a[1]-b[1];
-            }
+
+class Solution {
+    public int solution(int[][] routes) {
+        Arrays.sort(routes,(a,b)->{
+            if(a[1]==b[1]) return a[0]-b[0];
+           return a[1]-b[1]; 
         });
         
-        int endpoint=routes[0][1];
-        answer++;
-        for(int i=1;i<routes.length;i++){
-            if(endpoint<routes[i][0]){
-                answer++;
-                endpoint=routes[i][1];
+        int count=0;
+        int lastStart=-300001;
+        int lastEnd=-300001;
+        
+        for(int[] r:routes){
+            int start=r[0];
+            int end=r[1];
+            
+            if(start<=lastEnd){
+                lastStart=start;
+            }else{
+                count++;
+                lastStart=start;
+                lastEnd=end;
             }
         }
-        
-        return answer;
+        return count;
     }
 }
