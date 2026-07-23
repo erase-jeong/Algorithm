@@ -1,37 +1,24 @@
-import java.util.*;
+import java.util.Arrays;
 
-class Solution {
-    public int solution(int[] array) {
+class Solution{
+    public int solution(int[] array){
         int answer=0;
-        HashMap<Integer,Integer> map=new HashMap<>();
-        for(int key:array){
-            map.put(key,map.getOrDefault(key,0)+1);
+        Arrays.sort(array);
+        int max=array[array.length-1];
+        int count[]=new int[max+1];
+        for(int i=0;i<array.length;i++){
+            count[array[i]]++;
         }
-        //System.out.println("map : "+map);
         
-        int max_cnt=Integer.MIN_VALUE;
-        //순회
-        for(Integer key:map.keySet()){
-            if(map.get(key)>=max_cnt) max_cnt=map.get(key); //등호를 붙여야 하는 이유?
-            //System.out.println(key+" : "+map.get(key));
-        }
-        //System.out.println("max_cnt : "+max_cnt);
-        
-        
-        int cnt=0;
-        int value=0;
-        for(Integer key:map.keySet()){
-            if(max_cnt==map.get(key)){
-                cnt+=1;
-                value=key;
+        int maxCount=count[0];
+        for(int i=1;i<count.length;i++){
+            if(maxCount<count[i]){
+                maxCount=count[i];
+                answer=i;
+            }else if(maxCount==count[i]){
+                answer=-1;
             }
         }
-        
-        if(cnt==1){
-            return value;
-        }else{
-            return -1;
-        }
-
+        return answer;
     }
 }
