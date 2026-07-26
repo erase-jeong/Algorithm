@@ -3,35 +3,47 @@ import java.util.*;
 class Solution {
     public String[] solution(String[] picture, int k) {
         String[] answer=new String[picture.length*k];
-        //A->A'로 만들기
+        
+        //내부 값 수정하기
+        //그 다음 복붙(k개씩)
+        
         for(int i=0;i<picture.length;i++){
-            String now=picture[i];
-            String update="";
-            for(int j=0;j<now.length();j++){
-                for(int x=0;x<k;x++){
-                    update+=now.charAt(j);
+            String value=picture[i];
+            String temp="";
+            for(int j=0;j<value.length();j++){
+                for(int l=0;l<k;l++){
+                    temp+=value.charAt(j);
                 }
             }
-            picture[i]=update;
+            picture[i]=temp;
         }
         
-        //리스트로 만들고 그걸 배열에 넣자.
-        List<String> lst=new ArrayList<>();
+        //System.out.println(Arrays.toString(picture));
         
-        //[A',A',B',B'.. ]로 만들기
+        
+        int j=0;
         for(int i=0;i<picture.length;i++){
-            for(int x=0;x<k;x++){
-                lst.add(picture[i]);
+            String value=picture[i];
+            
+            for(int l=0;l<k;l++){
+                answer[j]=value;
+                j++;
             }
-        }
-        
-        for(int i=0;i<answer.length;i++){
-            answer[i]=lst.get(i);
         }
         
         return answer;
     }
 }
+
+/*
+- 개수도 곱하기
+- 안에 내용도 곱하기
+
+=> 큰 틀부터 잡으면서 하기
+
+pri
+
+*/
 
 
 
